@@ -1,7 +1,7 @@
 const xlsx = require('xlsx');
-const { xlsxFilePath } = require('../config/config');
+const { xlsxFilePath } = require('../../config/config');
 const transformData = require('./transformData');
-const {db , pgp} = require('../db/db');
+const {db , pgp} = require('../../db/db');
 
 
 // Read data from XLSX file
