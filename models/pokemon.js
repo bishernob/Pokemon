@@ -39,7 +39,9 @@ module.exports = (sequelize, DataTypes) => {
     not_gettable: DataTypes.INTEGER,
     future_evolve: DataTypes.INTEGER,
     cp_100_40: DataTypes.INTEGER,
-    cp_100_39: DataTypes.INTEGER
+    cp_100_39: DataTypes.INTEGER,
+    createdAt: DataTypes.DATE,
+    updatedAt:DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'Pokemon',
