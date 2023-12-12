@@ -1,6 +1,7 @@
 
 const db = require("../models");
 const pokemon = db.pokemon
+const { Op } = require('sequelize');
 
 const getAllPokemon = async (req, res) => {
   try {
@@ -80,9 +81,34 @@ const deletePokemon = async (req, res) => {
   }
 };
 
+
+const filterPokemon = async (req, res) => {
+  try {
+    const filters = req.query;
+
+    const filteredData = {};
+
+    //filter pokemons with data
+    Object.keys(filters).forEach((key) => {
+      if (pokemon.rawAttributes[key]) {
+        filteredData[key] = { [Op.like]: `%${filters[key]}%` };
+      }
+    });
+
+    //Get all data after filter it
+    const pokemons = await pokemon.findAll({ where: filteredData });
+    res.json(pokemons);
+
+  } catch (error) {
+    console.error('Error filtering Pokemon by generation:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
 module.exports = {
   getAllPokemon,
   createPokemon,
   updatePokemon,
   deletePokemon,
+  filterPokemon,
 };
