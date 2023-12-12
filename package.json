@@ -2,13 +2,15 @@
   "name": "pokemon",
   "version": "1.0.0",
   "description": "",
-  "type": "commonjs", 
+  "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "start": "node src/app.js",
     "db:migrate": "npx sequelize-cli db:migrate --config config/config.js",
-    "db:migrate:undo": "npx sequelize-cli db:migrate:undo --config config/config.js",
-    "import-data": "node scripts/import-data.js"
+    "db:seeds": "npx sequelize-cli db:seed:all",
+    "db:all":  "npx sequelize-cli db:migrate --config config/config.js && npx sequelize-cli db:seed:all",
+    "db:all:undo": "sequelize-cli db:seed:undo && npx sequelize-cli db:migrate:undo --config config/config.js",
+    "db:migrate:undo": "npx sequelize-cli db:migrate:undo --config config/config.js"
   },
   "author": "",
   "license": "ISC",
@@ -18,7 +20,9 @@
     "pg": "^8.11.3",
     "pg-promise": "^11.5.4",
     "sequelize": "^6.35.1",
-    "sequelize-cli": "^6.6.2",
     "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.2"
   }
 }
