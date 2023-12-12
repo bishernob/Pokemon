@@ -1,0 +1,214 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Pokemon API",
+    "description": "API for managing Pokemon data",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "paths": {
+    "/api/pokemons": {
+      "get": {
+        "summary": "Get all Pokemon",
+        "responses": {
+          "200": {
+            "description": "A list of Pokemon",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pokemon"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new Pokemon",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pokemon"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The newly created Pokemon",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pokemon"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/pokemons/{id}": {
+      "put": {
+        "summary": "Update Pokemon by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pokemon"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated Pokemon",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pokemon"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Pokemon by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pokemon deleted successfully"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Pokemon": {
+        "type": "object",
+        "properties": {
+          "row": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "pokedex_number": {
+            "type": "integer"
+          },
+          "img_name": {
+            "type": "string"
+          },
+          "generation": {
+            "type": "integer"
+          },
+          "evolution_stage": {
+            "type": "string"
+          },
+          "evolved": {
+            "type": "integer"
+          },
+          "family_id": {
+            "type": "integer"
+          },
+          "cross_gen": {
+            "type": "integer"
+          },
+          "type1": {
+            "type": "string"
+          },
+          "type2": {
+            "type": "string"
+          },
+          "weather1": {
+            "type": "string"
+          },
+          "weather2": {
+            "type": "string"
+          },
+          "stat_total": {
+            "type": "integer"
+          },
+          "atk": {
+            "type": "integer"
+          },
+          "def": {
+            "type": "integer"
+          },
+          "sta": {
+            "type": "integer"
+          },
+          "legendary": {
+            "type": "integer"
+          },
+          "acquireable": {
+            "type": "integer"
+          },
+          "spawns": {
+            "type": "integer"
+          },
+          "regional": {
+            "type": "integer"
+          },
+          "raidable": {
+            "type": "integer"
+          },
+          "hatchable": {
+            "type": "integer"
+          },
+          "shiny": {
+            "type": "integer"
+          },
+          "nest": {
+            "type": "integer"
+          },
+          "new": {
+            "type": "integer"
+          },
+          "not_gettable": {
+            "type": "integer"
+          },
+          "future_evolve": {
+            "type": "integer"
+          },
+          "cp_100_40": {
+            "type": "integer"
+          },
+          "cp_100_39": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}
