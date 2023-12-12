@@ -6,12 +6,12 @@ const { getAllPokemon , createPokemon , updatePokemon, deletePokemon} = require(
 router.get('/', getAllPokemon);
 
 //Create new Pokemon
-router.post('/create', createPokemon);
+router.post('/', createPokemon);
 
 //Update Pokemon
-router.put('/:id/update', updatePokemon);
+router.put('/:id', updatePokemon);
 
 // Delete Pokemon
-router.delete('/:id/delete', deletePokemon);
+router.delete('/:id', deletePokemon);
 
 module.exports = router;
