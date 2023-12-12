@@ -5,7 +5,7 @@ const { Op } = require('sequelize');
 
 const getAllPokemon = async (req, res) => {
   try {
-
+    
     const allPokemon = await pokemon.findAll();
     res.status(200).json(allPokemon);
 
@@ -18,11 +18,10 @@ const getAllPokemon = async (req, res) => {
 const createPokemon = async (req, res) => {
   try {
     const { name , pokedex_number , img_name , generation} = req.body;
-
     const fields = req.body;
 
     // Check if required fields
-    if (!name ,!pokedex_number,img_name, generation) {
+    if (!name ,!pokedex_number,!img_name, !generation) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
@@ -39,21 +38,17 @@ const createPokemon = async (req, res) => {
 const updatePokemon = async (req, res) => {
   try {
     const { id } = req.params;
-    const fieldsToUpdate = req.body;
 
-    // Check if Pokemon ID exists
-    const existingPokemon = await pokemon.findByPk(id);
-
-    if (!existingPokemon) {
-      return res.status(404).json({ error: 'Pokemon not found' });
+    const [updatedRowsCount] = await pokemon.update(req.body, {
+        where: { id }
+    });      
+    if (updatedRowsCount === 0) {
+      res.status(404).json({ message: 'User not found.' });
+    } else {
+      const user = await pokemon.findByPk(req.params.id);
+      res.json(user);
     }
-
-    // Update the Pokemon
-    await existingPokemon.update({fieldsToUpdate});
-
-    return res.status(200).json(existingPokemon);
-
-  } catch (error) {
+  }  catch (error) {
     console.error('Error updating Pokemon:', error);
     return res.status(500).json({ error: 'Internal Server Error' });
   }
@@ -62,7 +57,7 @@ const updatePokemon = async (req, res) => {
 const deletePokemon = async (req, res) => {
   try {
     const { id } = req.params;
-
+    console.log(id)
     // Check if Pokemon ID exists
     const existingPokemon = await pokemon.findByPk(id);
 
