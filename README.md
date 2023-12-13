@@ -134,7 +134,7 @@ Swagger's interactive documentation allows you to test each API endpoint directl
 
         npm run start
 
-        http://localhost:8080/api-docs
+        http://localhost:8080
 
 1- Navigate to the specific API endpoint you want to test (e.g., Create a new Pokemon).
 2- Click on the "Try it out" button.
