@@ -117,11 +117,11 @@ Environment Variables
 
 The application uses the following environment variables:
 
-DB_USERNAME: PostgreSQL username
-DB_PASSWORD: PostgreSQL password
-DB_NAME: PostgreSQL database name
-DB_HOST: PostgreSQL database host
-DB_PORT: PostgreSQL database port
+DB_USERNAME: admin
+DB_PASSWORD: admin
+DB_NAME: pokemon_go
+DB_HOST: localhost
+DB_PORT: 8080
 XLSX_FILE_PATH: Path to the XLSX file containing Pokemon data
 
 
